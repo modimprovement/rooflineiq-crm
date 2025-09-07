@@ -4,27 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import { DrawingPoint, DrawingPath } from '@/types';
 
-// Google Maps type definitions
-declare global {
-  interface Window {
-    google: {
-      maps: {
-        places: {
-          Autocomplete: new (input: HTMLInputElement, options: any) => any;
-        };
-        Geocoder: new () => any;
-        GeocoderStatus: any;
-        Map: new (element: HTMLElement, options: any) => any;
-        MapTypeId: any;
-        Marker: new (options: any) => any;
-        LatLng: new (lat: number, lng: number) => any;
-        event: any;
-        places: any;
-        geometry: any;
-      };
-    };
-  }
-}
+// Google Maps type definitions are imported from @/types
 
 interface GoogleMapsProps {
   onMeasurementUpdate: (measurements: any) => void;
