@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary-orange: #ff6a00;
+    --accent-gold: #ffd700;
+    --dark-bg: #1a1a1a;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --text-light: #ffffff;
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: var(--text-light);
+  }
+
+  /* Override for auth pages */
+  .auth-page {
+    background: #f9fafb;
+    color: #111827;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply bg-gradient-to-br from-primary-orange to-orange-500 text-white border-none py-3 px-6 rounded-lg text-base font-bold cursor-pointer transition-all duration-300 ease-in-out mx-1 hover:from-orange-500 hover:to-primary-orange hover:-translate-y-0.5 hover:shadow-lg hover:shadow-orange-500/40;
+  }
+
+  .btn-secondary {
+    @apply bg-gradient-to-br from-gray-600 to-gray-700 hover:from-gray-500 hover:to-gray-600;
+  }
+
+  .input-field {
+    @apply w-full p-3 border-2 border-gray-300 rounded-lg text-base my-1 transition-colors duration-300 focus:border-primary-orange focus:outline-none focus:shadow-lg focus:shadow-orange-500/30 text-gray-900 bg-white placeholder-gray-500;
+  }
+
+  .input-field:focus {
+    @apply text-gray-900 bg-white;
+  }
+
+  .input-field::placeholder {
+    @apply text-gray-500;
+  }
+
+  .section {
+    @apply m-5 bg-card-bg rounded-2xl shadow-lg overflow-hidden text-gray-800;
+  }
+
+  .section-header {
+    @apply bg-gradient-to-r from-primary-orange to-orange-500 text-white p-4 cursor-pointer flex justify-between items-center font-bold text-lg transition-all duration-300 hover:from-orange-600 hover:to-primary-orange;
+  }
+
+  .section-header.active {
+    @apply from-orange-700 to-orange-600;
+  }
+
+  .section-content {
+    @apply p-5 block;
+  }
+
+  .measurement-card {
+    @apply bg-white p-4 rounded-xl shadow-lg text-center;
+  }
+
+  .measurement-value {
+    @apply text-4xl font-bold text-gray-800;
+  }
+
+  .measurement-unit {
+    @apply text-base text-gray-600;
+  }
+
+  .status-message {
+    @apply p-3 rounded-lg my-2 font-bold;
+  }
+
+  .status-success {
+    @apply bg-green-100 border border-green-500 text-green-700;
+  }
+
+  .status-warning {
+    @apply bg-yellow-100 border border-yellow-500 text-yellow-700;
+  }
+
+  .status-error {
+    @apply bg-red-100 border border-red-500 text-red-700;
+  }
+
+  .loading {
+    @apply inline-block w-5 h-5 border-4 border-white/30 rounded-full border-t-white animate-spin;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .backdrop-blur {
+    backdrop-filter: blur(10px);
+  }
+}
