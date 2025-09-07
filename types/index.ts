@@ -133,7 +133,6 @@ declare global {
         LatLng: new (lat: number, lng: number) => any;
         Point: new (x: number, y: number) => any;
         event: any;
-        places: any;
         geometry: any;
       };
     };
