@@ -131,6 +131,7 @@ declare global {
         MapTypeId: any;
         Marker: new (options: any) => any;
         LatLng: new (lat: number, lng: number) => any;
+        Point: new (x: number, y: number) => any;
         event: any;
         places: any;
         geometry: any;
