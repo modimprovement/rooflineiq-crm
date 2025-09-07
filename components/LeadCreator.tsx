@@ -42,7 +42,7 @@ export default function LeadCreator({ isOpen, onClose, onSave, templates = [] }:
     phone: '',
     address: '',
     status: 'new' as const,
-    priority: 'medium' as const,
+    priority: 'medium' as 'low' | 'medium' | 'high',
     source: 'website' as const,
     assignedTo: '',
     notes: [] as string[],
