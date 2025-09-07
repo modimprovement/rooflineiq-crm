@@ -103,7 +103,7 @@ export interface SideSelection {
   back: 'street' | 'aerial';
 }
 
-// Google Maps type definitions
+// Google Maps type definitions - Fixed TypeScript error
 declare global {
   interface Window {
     google: {
