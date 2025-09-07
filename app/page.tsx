@@ -14,6 +14,7 @@ import HomeownerPortal from '@/components/HomeownerPortal';
 import ProposalGenerator from '@/components/ProposalGenerator';
 import DigitalSignature from '@/components/DigitalSignature';
 import { Measurements, Property, Pricing, Customer } from '@/types';
+import LandingPage from '@/components/LandingPage';
 
 interface Lead {
   id: string;
@@ -45,7 +46,7 @@ interface Lead {
 }
 
 export default function Home() {
-  const [currentView, setCurrentView] = useState<'crm' | 'measurement' | 'homeowner'>('crm');
+  const [currentView, setCurrentView] = useState<'landing' | 'crm' | 'measurement' | 'homeowner'>('landing');
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [showProposalGenerator, setShowProposalGenerator] = useState(false);
   const [showDigitalSignature, setShowDigitalSignature] = useState(false);
@@ -136,6 +137,14 @@ export default function Home() {
     setShowDigitalSignature(false);
   };
 
+  const handleGetStarted = () => {
+    setCurrentView('measurement');
+  };
+
+  const handleLogin = () => {
+    setCurrentView('crm');
+  };
+
   const renderCRMView = () => (
     <div className="space-y-6">
       {!selectedLead ? (
@@ -207,35 +216,44 @@ export default function Home() {
   );
 
   return (
-    <AuthWrapper>
-      <div className="space-y-8">
-        {currentView === 'crm' && renderCRMView()}
-        {currentView === 'measurement' && renderMeasurementView()}
-        {currentView === 'homeowner' && (
-          <HomeownerPortal
-            projectId="proj_123"
-            onClose={() => setCurrentView('crm')}
-          />
-        )}
-      </div>
-
-      {/* Modals */}
-      {showProposalGenerator && (
-        <ProposalGenerator
-          leadId={selectedLead?.id || ''}
-          onClose={() => setShowProposalGenerator(false)}
-          onGenerate={(proposal) => {
-            console.log('Proposal generated:', proposal);
-            setShowProposalGenerator(false);
-          }}
+    <div>
+      {currentView === 'landing' ? (
+        <LandingPage 
+          onGetStarted={handleGetStarted}
+          onLogin={handleLogin}
         />
-      )}
+      ) : (
+        <AuthWrapper>
+          <div className="space-y-8">
+            {currentView === 'crm' && renderCRMView()}
+            {currentView === 'measurement' && renderMeasurementView()}
+            {currentView === 'homeowner' && (
+              <HomeownerPortal
+                projectId="proj_123"
+                onClose={() => setCurrentView('crm')}
+              />
+            )}
+          </div>
 
-      <DigitalSignature
-        isOpen={showDigitalSignature}
-        onSave={handleDigitalSignature}
-        onCancel={() => setShowDigitalSignature(false)}
-      />
-    </AuthWrapper>
+          {/* Modals */}
+          {showProposalGenerator && (
+            <ProposalGenerator
+              leadId={selectedLead?.id || ''}
+              onClose={() => setShowProposalGenerator(false)}
+              onGenerate={(proposal) => {
+                console.log('Proposal generated:', proposal);
+                setShowProposalGenerator(false);
+              }}
+            />
+          )}
+
+          <DigitalSignature
+            isOpen={showDigitalSignature}
+            onSave={handleDigitalSignature}
+            onCancel={() => setShowDigitalSignature(false)}
+          />
+        </AuthWrapper>
+      )}
+    </div>
   );
 }
