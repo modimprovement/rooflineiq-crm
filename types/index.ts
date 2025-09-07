@@ -103,6 +103,20 @@ export interface SideSelection {
   back: 'street' | 'aerial';
 }
 
+// Canvas drawing types for Google Maps overlay
+export interface DrawingPoint {
+  x: number;
+  y: number;
+}
+
+export interface DrawingPath {
+  id: string;
+  type: 'straight' | 'freehand';
+  points: DrawingPoint[];
+  side: string;
+  distance: number;
+}
+
 // Google Maps type definitions - Fixed TypeScript error
 declare global {
   interface Window {
